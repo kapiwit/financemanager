@@ -59,7 +59,7 @@ public class Main {
                     System.out.println("Dodaj komentarz");
                     in.nextLine();
                     String comment = in.nextLine();
-                    System.out.println("Dodaj kategorie");
+                    System.out.println("Podaj id kategorii");
                     categoryService.showAll();
                     long category = in.nextLong();
                     ExpenseDTO wydatek = new ExpenseDTO(amount, comment, category);
