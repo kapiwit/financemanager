@@ -55,7 +55,7 @@ public class Main {
                 case 1 -> {
 
                     System.out.println("Podaj wartość wydatku");
-                    double amount = in.nextInt();
+                    double amount = in.nextDouble();
                     System.out.println("Dodaj komentarz");
                     in.nextLine();
                     String comment = in.nextLine();
@@ -70,7 +70,7 @@ public class Main {
                 case 2 -> {
 
                     System.out.println("Podaj wartość przychodu");
-                    double amount = in.nextInt();
+                    double amount = in.nextDouble();
                     System.out.println("Dodaj komentarz");
                     in.nextLine();
                     String comment = in.nextLine();
