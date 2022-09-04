@@ -54,8 +54,8 @@ public class Main {
             switch (selectedOperation) {
                 case 1 -> {
 
-                    System.out.println("Podaj wartość wydatku");
-                    double amount = in.nextDouble();
+                    System.out.println("Podaj wartość wydatku, format XXXXX,XX");
+                    Double amount = in.nextDouble();
                     System.out.println("Dodaj komentarz");
                     in.nextLine();
                     String comment = in.nextLine();
