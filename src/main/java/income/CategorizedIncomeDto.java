@@ -14,7 +14,7 @@ public class CategorizedIncomeDto implements Serializable {
 
     @Override
     public String toString() {
-        return "SummaryDto{" +
+        return "Suma wydatków{" +
                 "Ilosc wydatkow=" + id +
                 ", Kwota=" + amount +
                 ", Nazwa kategorii='" + categoryId + '\'' +
