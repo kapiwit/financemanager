@@ -1,8 +1,6 @@
 package income;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +9,8 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "income")
 public class Income {
     @Id
@@ -27,37 +27,6 @@ public class Income {
     @Column(name = "income_add_date")
     private LocalDate incomeAddDate;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public LocalDate getIncomeAddDate() {
-        return incomeAddDate;
-    }
-
-    public void setIncomeAddDate(LocalDate incomeAddDate) {
-        this.incomeAddDate = incomeAddDate;
-    }
 
     public Income(double amount, String comment, LocalDate incomeAddDate) {
         this.amount = amount;
