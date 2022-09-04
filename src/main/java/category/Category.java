@@ -17,7 +17,6 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @JoinColumn(name = "category_id")
     @Column(name = "category")
     private String category;
 
