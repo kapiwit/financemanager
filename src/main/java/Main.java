@@ -27,11 +27,7 @@ public class Main {
 
         int exit = 1;
         while(exit == 1) {
-            try {
-                TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             System.out.println("Podaj operacje do wykonania");
             System.out.println("1. Dodaj nowy wydatek");
             System.out.println("2. Dodaj nowy przychód");
