@@ -126,8 +126,12 @@ public class Main {
                             "GROUP BY category_name\n" +
                             "ORDER BY category_name ASC";
                     List<Object[]> resultList = entityManager.createNativeQuery(sql).getResultList();
-                    List<CategorizedIncomeDto> collect = resultList.stream().map(objects -> new CategorizedIncomeDto((BigInteger) objects[0], (BigDecimal) objects[1], (String) objects[2])).collect(Collectors.toList());
-                    collect.forEach(System.out::println);
+                    List<CategorizedIncomeDto> collect = resultList
+                            .stream()
+                            .map(objects -> new CategorizedIncomeDto((BigInteger) objects[0], (BigDecimal) objects[1], (String) objects[2]))
+                            .collect(Collectors.toList());
+                    collect
+                            .forEach(System.out::println);
                 }
                 case 10 -> {
                     incomeService.showAll();
