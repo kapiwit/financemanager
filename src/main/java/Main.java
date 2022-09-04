@@ -79,7 +79,12 @@ public class Main {
                     expenseService.showAll();
                     System.out.println("Wybierz ID wydatku ktory chcesz usunac");
                     Integer id = in.nextInt();
-                    expenseService.remove(id);
+                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = "+ id, Expense.class).getResultList();
+                    if(expenseList.isEmpty()){
+                        System.out.println("Nie ma takiego wydatku");
+                    }else{
+                        expenseService.remove(id);
+                    }
                 }
                 case 4 -> {
                     incomeService.showAll();

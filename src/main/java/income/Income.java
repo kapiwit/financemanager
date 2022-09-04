@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "income")
-@ToString
 public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,5 +63,14 @@ public class Income {
         this.amount = amount;
         this.comment = comment;
         this.incomeAddDate = incomeAddDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Przychód o id=" + id +
+                ", kwocie=" + amount +
+                ", komentarzu='" + comment + '\'' +
+                ", dacie dodania=" + incomeAddDate +
+                '}';
     }
 }
