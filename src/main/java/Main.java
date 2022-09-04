@@ -26,7 +26,7 @@ public class Main {
         SummaryService summaryService = new SummaryService();
 
         int exit = 1;
-        while(exit == 1) {
+        while (exit == 1) {
 
             System.out.println("Podaj operacje do wykonania");
             System.out.println("1. Dodaj nowy wydatek");
@@ -79,10 +79,10 @@ public class Main {
                     expenseService.showAll();
                     System.out.println("Wybierz ID wydatku ktory chcesz usunac");
                     Integer id = in.nextInt();
-                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = "+ id, Expense.class).getResultList();
-                    if(expenseList.isEmpty()){
+                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = " + id, Expense.class).getResultList();
+                    if (expenseList.isEmpty()) {
                         System.out.println("Nie ma takiego wydatku");
-                    }else{
+                    } else {
                         expenseService.remove(id);
                     }
                 }
@@ -148,10 +148,10 @@ public class Main {
                     categoryService.showAll();
                     System.out.println("Wybierz ID kategorii ktory chcesz usunac");
                     Integer id = in.nextInt();
-                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = "+ id, Expense.class).getResultList();
-                    if(expenseList.isEmpty()){
+                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = " + id, Expense.class).getResultList();
+                    if (expenseList.isEmpty()) {
                         categoryService.remove(id);
-                    }else{
+                    } else {
                         System.out.println("Nie można usunąć kategorii, ktora ma przypisane wydatki");
                     }
                     ;

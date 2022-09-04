@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 public class SummaryService {
     EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
+
     public double saldo() {
         String sql = "select amount from income";
         String sql2 = "select amount from expense";

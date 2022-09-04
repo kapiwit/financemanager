@@ -29,6 +29,19 @@ public class Expense {
     @Column(name = "category_id")
     private Long categoryId;
 
+    public Expense(double amount, String comment, LocalDate expenseAddDate, Long categoryId) {
+        this.amount = amount;
+        this.comment = comment;
+        this.expenseAddDate = expenseAddDate;
+        this.categoryId = categoryId;
+    }
+
+
+    public Expense(double amount, Long categoryId) {
+        this.amount = amount;
+        this.categoryId = categoryId;
+    }
+
     @Override
     public String toString() {
         return "Wydatek o id=" + id +
@@ -37,17 +50,5 @@ public class Expense {
                 ", Data dodania wydatku=" + expenseAddDate +
                 ", Numer Kategorii=" + categoryId +
                 '}';
-    }
-
-
-    public Expense(double amount, String comment, LocalDate expenseAddDate, Long categoryId) {
-        this.amount = amount;
-        this.comment = comment;
-        this.expenseAddDate = expenseAddDate;
-        this.categoryId = categoryId;
-    }
-    public Expense(double amount, Long categoryId) {
-        this.amount = amount;
-        this.categoryId = categoryId;
     }
 }
