@@ -2,6 +2,7 @@ import category.CategoryDTO;
 import category.CategoryService;
 import expense.Expense;
 import expense.ExpenseDTO;
+import income.Income;
 import income.IncomeDTO;
 import income.IncomeService;
 import income.CategorizedIncomeDto;
@@ -79,7 +80,7 @@ public class Main {
                     expenseService.showAll();
                     System.out.println("Wybierz ID wydatku ktory chcesz usunac");
                     Integer id = in.nextInt();
-                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = " + id, Expense.class).getResultList();
+                    List<Expense> expenseList = expenseService.listByCategoryId(id);
                     if (expenseList.isEmpty()) {
                         System.out.println("Nie ma takiego wydatku");
                     } else {
@@ -90,7 +91,11 @@ public class Main {
                     incomeService.showAll();
                     System.out.println("Podaj ID przychodu który chcesz usunac");
                     int id = in.nextInt();
-                    incomeService.remove(id);
+                    if(incomeService.listByCategory(id).isEmpty()){
+                        System.out.println("Nie ma takiego przychodu");
+                    }else {
+                        incomeService.remove(id);
+                    }
                 }
                 case 5 -> {
                     System.out.println("Wyświetlanie wszystkich wydatków i przychodów");
@@ -113,25 +118,16 @@ public class Main {
                     categoryService.showAll();
                     System.out.println("Wybierz id kategorii");
                     int categoryId = in.nextInt();
-                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = " + categoryId, Expense.class).getResultList();
+                    List<Expense> expenseList = expenseService.listByCategoryId(categoryId);
                     expenseList.forEach(System.out::println);
                 }
                 case 9 -> {
-                    String sql = "SELECT \n" +
-                            "COUNT(expense.id) AS ilosc_wydatkow,\n" +
-                            "SUM(expense.amount) AS amount,\n" +
-                            "category.category AS category_name\n" +
-                            "FROM expense\n" +
-                            "JOIN category on expense.category_id = category.id\n" +
-                            "GROUP BY category_name\n" +
-                            "ORDER BY category_name ASC";
-                    List<Object[]> resultList = entityManager.createNativeQuery(sql).getResultList();
+                    List<Object[]> resultList = incomeService.showGrouped();
                     List<CategorizedIncomeDto> collect = resultList
                             .stream()
                             .map(objects -> new CategorizedIncomeDto((BigInteger) objects[0], (BigDecimal) objects[1], (String) objects[2]))
                             .collect(Collectors.toList());
-                    collect
-                            .forEach(System.out::println);
+                    collect.forEach(System.out::println);
                 }
                 case 10 -> {
                     incomeService.showAll();
@@ -152,13 +148,15 @@ public class Main {
                     categoryService.showAll();
                     System.out.println("Wybierz ID kategorii ktory chcesz usunac");
                     Integer id = in.nextInt();
-                    List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where category_id = " + id, Expense.class).getResultList();
-                    if (expenseList.isEmpty()) {
-                        categoryService.remove(id);
+                    List<Expense> expenseList = expenseService.listByCategoryId(id);
+                    if (categoryService.showByCategory(id).isEmpty()) {
+                        System.out.println("Nie ma takiej kategorii");
+                    } else if (expenseList.isEmpty()) {
+                            categoryService.remove(id);
                     } else {
-                        System.out.println("Nie można usunąć kategorii, ktora ma przypisane wydatki");
+                            System.out.println("Nie można usunąć kategorii, ktora ma przypisane wydatki");
                     }
-                    ;
+
                 }
                 case 0 -> {
                     exit = 0;

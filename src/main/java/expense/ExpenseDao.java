@@ -37,8 +37,14 @@ public class ExpenseDao {
             EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
             List<Expense> expenseList = entityManager.createNativeQuery("select * from expense where expence_add_date >= " + first + " and expence_add_date <= " + second, Expense.class).getResultList();
             expenseList.forEach(System.out::println);
-        } else{
+        } else {
             throw new IllegalArgumentException("Błędny format danych");
         }
+    }
+
+    public List<Expense> listByCategoryId(int id) {
+        EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
+
+        return entityManager.createNativeQuery("select * from expense where category_id = " + id, Expense.class).getResultList();
     }
 }

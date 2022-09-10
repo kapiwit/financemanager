@@ -3,6 +3,8 @@ package category;
 import income.Income;
 import income.IncomeDTO;
 
+import java.util.List;
+
 public class CategoryService {
     CategoryDao categoryDao = new CategoryDao();
     public void showAll() {
@@ -18,5 +20,8 @@ public class CategoryService {
         } else {
             throw new IllegalArgumentException("Błędne dane");
         }
+    }
+    public List<Category> showByCategory(int id){
+        return categoryDao.showByCategory(id);
     }
 }

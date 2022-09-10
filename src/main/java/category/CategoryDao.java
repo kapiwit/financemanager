@@ -29,4 +29,9 @@ public class CategoryDao {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
+    public List<Category> showByCategory(int id){
+        EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
+        return entityManager.createNativeQuery("select * from category where id = " +id, Category.class).getResultList();
+
+    }
 }

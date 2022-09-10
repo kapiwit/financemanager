@@ -3,6 +3,7 @@ package expense;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ExpenseService {
     EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
@@ -27,5 +28,8 @@ public class ExpenseService {
 
     public void showFromDateToDate(String first, String second) {
         expenseDao.showFromDateToDate(first, second);
+    }
+    public List<Expense> listByCategoryId(int id){
+        return expenseDao.listByCategoryId(id);
     }
 }
